@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 3238229501437270692}
   - component: {fileID: 1598589071219263992}
   - component: {fileID: 5405560938168980534}
+  - component: {fileID: 3221130776339065260}
   - component: {fileID: 7434189617770487365}
   m_Layer: 5
   m_Name: LetterButton
@@ -213,6 +214,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3221130776339065260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4501015038692105658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d46c05fa26ccc2e40ba3c7458ce1d110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7434189617770487365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,4 +269,16 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5405560938168980534}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3221130776339065260}
+        m_TargetAssemblyTypeName: LetterButton, Assembly-CSharp
+        m_MethodName: SendLetter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
