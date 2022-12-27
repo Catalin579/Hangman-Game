@@ -12,5 +12,6 @@ public class LetterButton : MonoBehaviour
     public void SendLetter()
     {
         Debug.Log("My letter is: " + letter);
+        GameManager.instance.InputFromButton(letter);
     }
 }

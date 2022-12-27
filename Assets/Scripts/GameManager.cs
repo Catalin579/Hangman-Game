@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
     public List<string> solvedList = new List<string>();
     public string[] unsolvedWord;
 
@@ -14,6 +16,11 @@ public class GameManager : MonoBehaviour
 
     public Category[] categories;
 
+
+    void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -50,18 +57,51 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void CheckLetter(string requestedLetter)
-    {
-
-    }
-
     public void InputFromButton(string requestedLetter)
     {
+        // CHECK IF THE GAME IS NOT OVER YET
 
+        // SEARCH MECHANIC FOR SOLVED LIST
+        CheckLetter(requestedLetter);
+    }
+
+
+    void CheckLetter(string requestedLetter)
+    {
+        bool letterFound = false;
+        // FIND THE LETTER IN THE SOLVED LIST
+        for (int i = 0; i < solvedList.Count; i++)
+        {
+            if (solvedList[i] == requestedLetter)
+            {
+                letterHolderList[i].text = requestedLetter;
+                unsolvedWord[i] = requestedLetter;
+                letterFound = true;
+            }
+        }
+
+        if (!letterFound)
+        {
+            // MISTAKE STUFF - GRAPHIC REPRESENTATION
+
+
+            // DO GAME OVER
+        }
+
+        // CHECK IF GAME WON
+        Debug.Log("Game Won?: " + CheckIfWon());
     }
 
     bool CheckIfWon()
     {
+        for (int i = 0; i < unsolvedWord.Length; i++)
+        {
+            if (unsolvedWord[i] != solvedList[i])
+            {
+                return false;
+            }
+        }
+
         return true;
     }
 }
