@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -15,7 +16,11 @@ public class GameManager : MonoBehaviour
     public Transform letterHolder;
 
     public Category[] categories;
-
+    public TMP_Text categoryText;
+    [Header("Timer")]
+    public TMP_Text timerText;
+    int playTime;
+    bool gameOver;
 
     void Awake()
     {
@@ -25,6 +30,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Initialize();
+        StartCoroutine(Timer());
     }
 
     void Update()
@@ -36,6 +42,7 @@ public class GameManager : MonoBehaviour
     {
         //PICK A CATEGORY FIRST
         int cIndex = Random.Range(0, categories.Length);
+        categoryText.text = categories[cIndex].name;
         int wIndex = Random.Range(0, categories[cIndex].wordList.Length);
 
         //PICK A WORD FROM LIST OR CATEGORY
@@ -69,6 +76,7 @@ public class GameManager : MonoBehaviour
     void CheckLetter(string requestedLetter)
     {
         bool letterFound = false;
+
         // FIND THE LETTER IN THE SOLVED LIST
         for (int i = 0; i < solvedList.Count; i++)
         {
@@ -90,6 +98,7 @@ public class GameManager : MonoBehaviour
 
         // CHECK IF GAME WON
         Debug.Log("Game Won?: " + CheckIfWon());
+        gameOver = CheckIfWon();
     }
 
     bool CheckIfWon()
@@ -101,7 +110,25 @@ public class GameManager : MonoBehaviour
                 return false;
             }
         }
-
         return true;
     }
+
+    IEnumerator Timer()
+    {
+        int seconds = 0;
+        int minutes = 0;
+        timerText.text = minutes.ToString("D2") + ":" + seconds.ToString("D2");
+        while (!gameOver)
+        {
+            yield return new WaitForSeconds(1);
+            playTime += 1;
+
+            seconds = playTime % 60;
+            minutes = seconds / 60 % 60;
+
+            timerText.text = minutes.ToString("D2") + ":" + seconds.ToString("D2");
+        }
+    }
+
+
 }
