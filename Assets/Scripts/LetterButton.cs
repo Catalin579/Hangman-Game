@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LetterButton : MonoBehaviour
 {
@@ -13,5 +14,7 @@ public class LetterButton : MonoBehaviour
     {
         Debug.Log("My letter is: " + letter);
         GameManager.instance.InputFromButton(letter);
+        ButtonCreator.instance.RemoveLetter(this);
+        GetComponent<Button>().interactable = false;
     }
 }

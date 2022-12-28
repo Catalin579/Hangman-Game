@@ -11,16 +11,26 @@ public class GameManager : MonoBehaviour
     public List<string> solvedList = new List<string>();
     public string[] unsolvedWord;
 
+    [Header("Letters")]
+    [Space]
     public GameObject letterPrefab;
     List<TMP_Text> letterHolderList = new List<TMP_Text>();
     public Transform letterHolder;
 
+    [Header("Categories")]
+    [Space]
     public Category[] categories;
     public TMP_Text categoryText;
+
     [Header("Timer")]
+    [Space]
     public TMP_Text timerText;
     int playTime;
     bool gameOver;
+
+    [Header("Hints")]
+    [Space]
+    public int maxHints = 3;
 
     void Awake()
     {
@@ -71,7 +81,6 @@ public class GameManager : MonoBehaviour
         // SEARCH MECHANIC FOR SOLVED LIST
         CheckLetter(requestedLetter);
     }
-
 
     void CheckLetter(string requestedLetter)
     {
@@ -130,5 +139,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
+    public bool GameOver()
+    {
+        return gameOver;
+    }
 }
