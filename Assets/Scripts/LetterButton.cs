@@ -10,10 +10,10 @@ public class LetterButton : MonoBehaviour
         letter = _letter;
     }
 
-    public void SendLetter()
+    public void SendLetter(bool isThatAHint) // BUTTON INPUT OR HINT
     {
         Debug.Log("My letter is: " + letter);
-        GameManager.instance.InputFromButton(letter);
+        GameManager.instance.InputFromButton(letter, isThatAHint);
         ButtonCreator.instance.RemoveLetter(this);
         GetComponent<Button>().interactable = false;
     }
