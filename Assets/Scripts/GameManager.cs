@@ -82,16 +82,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void InputFromButton(string requestedLetter)
+    public void InputFromButton(string requestedLetter, bool isThatAHint)
     {
         // CHECK IF THE GAME IS NOT OVER YET
 
         // SEARCH MECHANIC FOR SOLVED LIST
-        CheckLetter(requestedLetter);
+        CheckLetter(requestedLetter, isThatAHint);
     }
 
-    void CheckLetter(string requestedLetter)
+    void CheckLetter(string requestedLetter, bool isThatAHint)
     {
+        if (gameOver)
+        {
+            return;
+        }
+
         bool letterFound = false;
 
         // FIND THE LETTER IN THE SOLVED LIST
@@ -105,7 +110,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (!letterFound)
+        if (!letterFound && !isThatAHint)
         {
             // MISTAKE STUFF - GRAPHIC REPRESENTATION
             petalList[currentMistakes].SetTrigger("miss");

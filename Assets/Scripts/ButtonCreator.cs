@@ -55,6 +55,6 @@ public class ButtonCreator : MonoBehaviour
         }
         GameManager.instance.maxHints -= 1;
         int randomIndex = Random.Range(0, letterList.Count);
-        letterList[randomIndex].SendLetter();
+        letterList[randomIndex].SendLetter(true);
     }
 }
