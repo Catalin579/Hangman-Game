@@ -2262,6 +2262,16 @@ MonoBehaviour:
   categoryText: {fileID: 367027125}
   timerText: {fileID: 900682748}
   maxHints: 3
+  petalList:
+  - {fileID: 664228583}
+  - {fileID: 1751704946}
+  - {fileID: 1730096998}
+  - {fileID: 330125686}
+  - {fileID: 238039443}
+  - {fileID: 568127143}
+  - {fileID: 1059498446}
+  - {fileID: 1190740376}
+  maxMistakes: 0
 --- !u!1 &1730096995
 GameObject:
   m_ObjectHideFlags: 0

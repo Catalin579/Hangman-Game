@@ -32,6 +32,13 @@ public class GameManager : MonoBehaviour
     [Space]
     public int maxHints = 3;
 
+    [Header("Mistakes")]
+    [Space]
+    public Animator[] petalList;
+    [SerializeField]
+    int maxMistakes;
+    int currentMistakes;
+
     void Awake()
     {
         instance = this;
@@ -39,6 +46,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        maxMistakes = petalList.Length;
         Initialize();
         StartCoroutine(Timer());
     }
@@ -100,9 +108,16 @@ public class GameManager : MonoBehaviour
         if (!letterFound)
         {
             // MISTAKE STUFF - GRAPHIC REPRESENTATION
-
+            petalList[currentMistakes].SetTrigger("miss");
+            currentMistakes++;
 
             // DO GAME OVER
+            if (currentMistakes == maxMistakes)
+            {
+                Debug.Log("Lost Game");
+                gameOver = true;
+                return;
+            }
         }
 
         // CHECK IF GAME WON
